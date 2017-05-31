@@ -10,28 +10,28 @@ list(
     'password' => $pass,
     'charset' => $charset,
     'collation' => $collation
-) = $db['development'];
+    ) = $db['development'];
 
 return [
     'paths' => [
         'migrations' => [
-        __DIR__ . '/db/migrations'
+            __DIR__ . '/db/migrations'
         ],
         'seeds' => [
-        __DIR__ . '/db/seeds'
+            __DIR__ . '/db/seeds'
         ]
     ],
     'environments' => [
         'default_migration_table' => 'migrations',
         'default_database' => 'development',
         'development' => [
-        'adapter' => $adapter,
-        'host' => $host,
-        'name' => $name,
-        'user' => $user,
-        'pass' => $pass,
-        'charset' => $charset,
-        'collation' => $collation
+            'adapter' => $adapter,
+            'host' => $host,
+            'name' => $name,
+            'user' => $user,
+            'pass' => $pass,
+            'charset' => $charset,
+            'collation' => $collation
         ]
     ]
 ];

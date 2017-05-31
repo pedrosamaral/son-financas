@@ -13,5 +13,5 @@ use SONFin\ServiceContainerInterface;
 
 interface PluginInterface
 {
-        public function register(ServiceContainerInterface $container);
+    public function register(ServiceContainerInterface $container);
 }

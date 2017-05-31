@@ -17,7 +17,7 @@ class Application
     /**
      * Application constructor.
      * @param $serviceContainer
-    **/
+     **/
     private $serviceContainer;
 
     public function __construct(ServiceContainerInterface $serviceContainer)
