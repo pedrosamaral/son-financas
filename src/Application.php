@@ -5,11 +5,12 @@
  * Date: 30/05/2017
  * Time: 21:48
  */
-
+declare(strict_types=1);
 namespace SONFin;
 
 
 use Pimple\Tests\Fixtures\Service;
+use SONFin\Plugins\PluginInterface;
 
 class Application
 {
@@ -29,12 +30,17 @@ class Application
         return $this->serviceContainer->get($name);
     }
 
-    public function addService(string $name, $service)
+    public function addService(string $name, $service):void
     {
         if (is_callable($service)){
             $this->serviceContainer->addLazy($name, $service);
         }else{
             $this->serviceContainer->add($name, $service);
         }
+    }
+
+    public function plugin(PluginInterface $plugin):void
+    {
+        $plugin->register($this->serviceContainer);
     }
 }
