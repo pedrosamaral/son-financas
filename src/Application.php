@@ -30,7 +30,7 @@ class Application
         return $this->serviceContainer->get($name);
     }
 
-    public function addService(string $name, $service):void
+    public function addService(string $name, $service): void
     {
         if (is_callable($service)){
             $this->serviceContainer->addLazy($name, $service);
@@ -39,8 +39,25 @@ class Application
         }
     }
 
-    public function plugin(PluginInterface $plugin):void
+    public function plugin(PluginInterface $plugin): void
     {
         $plugin->register($this->serviceContainer);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function get($path, $action, $name = null): Application
+    {
+        $routing = $this->service('routing');
+        $routing->get($name, $path, $action);
+        return $this;
+    }
+
+    public function start()
+    {
+        $route = $this->service('route');
+        $callable = $route->handler;
+        $callable();
     }
 }
