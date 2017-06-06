@@ -10,6 +10,8 @@ namespace SONFin;
 
 
 use Pimple\Tests\Fixtures\Service;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use SONFin\Plugins\PluginInterface;
 
 class Application
@@ -57,7 +59,17 @@ class Application
     public function start()
     {
         $route = $this->service('route');
+        /** @var ServerRequestInterface $request**/
+        $request = $this->service(RequestInterface::class);
+        if (!$route){
+            echo "Page Not Found";
+            exit;
+        }
+
+        foreach ($route->attributes as $key => $value){
+            $request = $request->withAttribute($key, $value);
+        }
         $callable = $route->handler;
-        $callable();
+        $callable($request);
     }
 }
