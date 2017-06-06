@@ -1,5 +1,6 @@
 <?php
 
+use Zend\Diactoros\Response;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use SONFin\Application;
@@ -25,11 +26,9 @@ $app->get('/', function (RequestInterface $request){
  * @param ServerRequestInterface $request
  */
 $app->get('/home/{name}/{id}', function (ServerRequestInterface $request){
-    echo "Mostrando a Home";
-    echo "<br/>";
-    echo $request->getAttribute('name');
-    echo "<br/>";
-    echo $request->getAttribute('id');
+    $response = new Response();
+    $response->getBody()->write("Response com emmiter do diactoros");
+    return $response;
 });
 
 $app->start();
