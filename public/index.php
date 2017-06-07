@@ -1,5 +1,6 @@
 <?php
 
+use SONFin\Plugins\ViewPlugin;
 use Zend\Diactoros\Response;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -17,10 +18,13 @@ $app = new Application($serviceContainer);
 
 /* Nesse momento plugamos a rota */
 $app->plugin(new RoutePlugin());
+$app->plugin(new ViewPlugin());
 
-$app->get('/', function (RequestInterface $request){
-    var_dump($request->getUri());die();
-    echo "Hello World, Pedro Amaral";
+
+$app->get('/', function (RequestInterface $request) use ($app)
+{
+    $view = $app->service('view.renderer');
+    return $view->render('test.html.twig', ['name' => 'Pedro Amaral']);
 });
 /**
  * @param ServerRequestInterface $request

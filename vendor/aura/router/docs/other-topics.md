@@ -81,7 +81,7 @@ $map->get('blog.read', '/blog/{slug}', ...);
 // get the helper from the container
 $routeHelper = $routerContainer->newRouteHelper();
 
-// use the helper in a view; note how the URL is escaped
+View
 echo $routeHelper('blog.read', [
     'slug' => 'my title'
 ]); // "/path/to/subdir/blog/my%20title"
