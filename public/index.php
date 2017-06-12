@@ -1,6 +1,7 @@
 <?php
 
 use SONFin\Plugins\ViewPlugin;
+use SONFin\Plugins\DbPlugin;
 use Zend\Diactoros\Response;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -19,6 +20,7 @@ $app = new Application($serviceContainer);
 /* Nesse momento plugamos a rota */
 $app->plugin(new RoutePlugin());
 $app->plugin(new ViewPlugin());
+$app->plugin(new DbPlugin());
 
 
 //$app->get('/{name}', function (ServerRequestInterface $request) use ($app)
