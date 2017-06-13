@@ -37,9 +37,14 @@ $app->get('/home/{name}/{id}', function (ServerRequestInterface $request){
     return $response;
 });
 
-$app->get('/category-costs', function () use($app){
+
+$app->get('/category-costs', function() use($app){
     $view = $app->service('view.renderer');
-    return $view->render('category-costs/list.html.twig');
+    $meuModel = new \SONFin\Models\CategoryCost();
+    $categories = $meuModel->all();
+    return $view->render('category-costs/list.html.twig',[
+        'categories' => $categories
+    ]);
 });
 
 $app->start();
